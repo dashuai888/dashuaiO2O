@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dashuai.dashuaiO2O.dao.AreaMapper">
+    <select id="queryArea" resultType="com.dashuai.dashuaiO2O.entity.Area">
+        SELECT *
+        FROM area_tbl
+        ORDER BY priority DESC
+    </select>
+</mapper>

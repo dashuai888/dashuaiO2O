@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--配置 SpringMVC -->
+
+    <!--1、开启 SpringMVC 注解模式，即可以直接使用 @Controller 等注解，不需要在 xml 文件配置-->
+    <mvc:annotation-driven/>
+
+    <!--2、静态资源默认使用 sevlet 处理
+        1:加入对静态资源的处理：js,gif,png
+        2:允许使用"/"做整体映射
+    -->
+    <!--告知 SpringMVC 不拦截以 /resources/ 开头的请求路径，要将其当做静态资源，交给 servlet 处理-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--交给默认的 servlet 处理-->
+    <mvc:default-servlet-handler/>
+
+    <!--3、配置视图解析器，根据相应的 URL 请求，解析出对应的文件 http://elim.iteye.com/blog/1770554-->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> <!--国际化视图解析器。-->
+        <property name="prefix" value="/WEB-INF/html/"/>  <!-- 前端文件不使用 jsp -->
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!--4：扫描 web 相关的 bean，即 controller 包-->
+    <context:component-scan base-package="com.dashuai.dashuaiO2O.web"/>
+</beans>
+

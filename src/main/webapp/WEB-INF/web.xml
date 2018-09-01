@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <display-name>dashuaiO2O</display-name>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <!--参考 http://592502042.iteye.com/blog/2405787-->
+    <!--配置 DispatcherServlet： DispatcherServlet主要负责流程的控制。https://blog.csdn.net/m0_37630602/article/details/65443660-->
+    <servlet>
+        <!-- spring mvc核心控制器：分发servlet-->
+        <servlet-name>spring-dispatcher</servlet-name>  <!-- servlet的内部名称，自定义。尽量有意义 -->
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class> <!-- servlet的类全名： 包名+简单类名 -->
+
+        <!--https://www.cnblogs.com/hzj-/articles/1689836.html-->
+        <init-param>
+            <!--https://blog.csdn.net/zhangliao613/article/details/6289114-->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>classpath:spring/spring-*.xml</param-value>
+        </init-param>
+    </servlet>
+
+    <!-- servlet的映射规则配置 -->
+    <servlet-mapping>
+        <!-- servlet的内部名称，一定要和上面<servlet>里的内部名称保持一致 -->
+        <servlet-name>spring-dispatcher</servlet-name>
+        <!-- servlet的映射路径，不能丢掉 /，否则就会出错，参考匹配规则 https://blog.csdn.net/qq_25218095/article/details/51788063 -->
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+</web-app>
